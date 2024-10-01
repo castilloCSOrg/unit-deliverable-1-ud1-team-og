@@ -1,14 +1,15 @@
 /********************************************
 *	AUTHORS:	Jorge Barajas, Ryan Mahadavi 
 * COLLABORATORS: <name of peer, tutor, instructor, anyone else who helped>
-*	LAST MODIFIED:	9/26/24
+*	LAST MODIFIED:	10/1/24
 ********************************************/
 
 /********************************************
-*	<TITLE OF PROGRAM>
+*	<TITLE OF PROGRAM> Musical Note Hertz Detector
 *********************************************
 *	PROGRAM DESCRIPTION:
 *	<1-2 sentences describing overall program>
+This program will allow you to find the hertz frequency of any note depending on the semitone input.
 *********************************************
 *	ALGORITHM:
 *	<Pseudocode here>
