@@ -1,21 +1,25 @@
 /********************************************
-*	AUTHORS:	Jorge Barajas, Ryan Mahadavi 
+*	AUTHORS:	Jorge Barajas, Ryan Mahadavi, Chris Peay
 * COLLABORATORS: <name of peer, tutor, instructor, anyone else who helped>
-*	LAST MODIFIED:	10/1/24
+*	LAST MODIFIED:	10/12/24
 ********************************************/
 
 /********************************************
-*	<TITLE OF PROGRAM> Musical Note Hertz Detector
+<Musical Note Hertz Calculator>
 *********************************************
 *	PROGRAM DESCRIPTION:
-*	<1-2 sentences describing overall program>
-This program will allow you to find the hertz frequency of any note depending on the semitone input.
+This program will allow you to find the hertz frequency, octaves away from the root note A (440hz), and the notes corresponding MIDI number
+of any note depending on the User Input. Frequency is defined as the number of cycles or repetitions per unit of time and relates directly to pitch.
+In order to find the frequency for notes we need a base note to base the rest of the other notes on, which in this case is the root note A (440hz).
+Octaves are when notes or frequencies are exactly double apart in distance, with this program you are able calculate how far the note you selected is from
+being an octave from A. A MIDI number is a universal number that makes copmuters able distinguish a note.
+
 *********************************************
 *	ALGORITHM:
-*	<Pseudocode here>
+Take user input, convert input into Semitones from root note A, find frequency of note, find octaves away from root note A, find MIDI number, print results.
 *********************************************
 *	STATIC METHODS:
-* <list of static methods and which teammate made each>
+getUserInput(Chris Peay), getSemitonesFromA(Jorge Barajas), findOctave(Ryan Mahadavi), findMidiNum(Jorge Barajas)
 *********************************************/
 
 import java.lang.Math; 
@@ -48,7 +52,7 @@ public class Main
     semitonesFromA = getSemitonesFromA(noteSelected); //INITIALIZE semitonesFromA BY ASSIGNING IT VALUE RETURNED FROM getSemitonesFrom METHOD, METHOD USES INPUT FROM USER SELECTED NOTE 
 
     /***** PROCESSING SECTION *****/
-    frequency = Math.pow(2, ((double) semitonesFromA / 12) ) * 440;
+    frequency = Math.pow(2, ((double) semitonesFromA / 12) ) * 440; 
     octavesApart = findOctave(frequency);
     midiNum = findMidiNum(frequency);
 
@@ -59,6 +63,7 @@ public class Main
 
 
     /***** OUTPUT SECTION *****/
+    /*PRINTS ALL FINDINGS FROM CALCULATIONS */
     System.out.println("The Note you selected is " + noteSelected); 
     System.out.println("Your note is "+semitonesFromA+" semitones away from A (440 Hz)");
     System.out.printf("Your frequency is %.3f Hz%n",frequency);
@@ -75,6 +80,8 @@ public class Main
     
   }
   /***** STATIC METHODS *****/
+  /*PROMPTS USER TO SELECT A NOTE, MAKES SURE IF NOTE IS VALID INPUT, RETURNS NOTE SELECTED */
+  
   public static char getUserInput(Scanner getNote){ //METHOD TO RETREIVE USER INPUT AND VERIFY IT'S ACCEPTABLE, MADE BY JORGE
     
     char noteSelected;
@@ -96,6 +103,7 @@ public class Main
     }
   }
   
+  /*CONVERTS INPUT INTO SEMITONES FROM THE ROOT NOTE A, RETURNS SEMITONES FROM A */
   public static int getSemitonesFromA(char noteSelected){ //METHOD THAT TAKES noteSelected AND FINDS HOW MANY SEMITONES (1 SEMITONE = 1 NOTE ON PIANO) AWAY noteSelected IS FROM THE ROOT NOTE A 
    int semitonesFromA;                                     
     switch(noteSelected){
@@ -125,13 +133,13 @@ public class Main
       return semitonesFromA;
     }
   }
-
-  public static double findOctave(double frequency){ //METHOD FINDS HOW MANY OCTAVES ARE BETWEEN frequency AND THE ROOT NOTE A
+/*METHOD FINDS HOW MANY OCTAVES ARE BETWEEN frequency AND THE ROOT NOTE A*/
+  public static double findOctave(double frequency){ 
     double octavesApart = (Math.log(frequency / 440))/(Math.log(2));
     return octavesApart;
   }
-  
-  public static double findMidiNum(double frequency){ //METHOD FINDS THE UNIVERSAL MIDI NUM FROM frequency
+  /*METHOD FINDS THE UNIVERSAL MIDI NUM FROM frequency */
+  public static double findMidiNum(double frequency){ 
     double midiNum = (12*(Math.log(frequency/220)/Math.log(2))+57.01);
     return midiNum;
   }
